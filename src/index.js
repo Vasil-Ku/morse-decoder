@@ -38,8 +38,26 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
-}
+    let s = '';
+    for (let i = 0; i < expr.length; i += 10) {
+        s += toLetter(expr.substr(i, 10));
+    }
+    return s;
+};
+
+function toLetter(a) {
+    const mor = {
+        '10': '.',
+        '11': '-',
+        '00': '',
+    };
+    let d ='';
+    if (a === '**********') return ' ';
+    for (i = 8; i >= 0; i -=2) {
+        d = mor[a.substr(i, 2)] + d;
+    }
+    return MORSE_TABLE[d];
+};
 
 module.exports = {
     decode
